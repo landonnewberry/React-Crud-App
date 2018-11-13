@@ -1,8 +1,9 @@
 import React from 'react';
+import { Error } from './Error';
 
-export const ItemsFormComponent = ({ addItem }) => {
+export const ItemsFormComponent = ({ addItem, error }) => {
     let input;
-    return (
+    return error ? Error(error) : (
         <div>
             <input type="text" ref={ node => { input = node } } />
             <button 

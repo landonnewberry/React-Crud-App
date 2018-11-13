@@ -3,7 +3,9 @@ import { ItemsFormComponent } from '../components/ItemsFormComponent';
 import { addItemWithAPICall } from '../actions/items';
 
 export const ItemsForm = connect(
-    null,
+    state => ({
+        error: state.error
+    }),
     dispatch => ({
         addItem: (item) => dispatch(addItemWithAPICall(item))
     })

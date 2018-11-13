@@ -1,10 +1,14 @@
 import { items } from './reducers/items';
-import { createStore, applyMiddleware } from 'redux';
+import { error } from './reducers/error';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
 export const configureStore = () => {
     const store = createStore(
-        items,
+        combineReducers({
+            items,
+            error
+        }),
         applyMiddleware(thunk)
     );
 

@@ -1,4 +1,6 @@
 import { v4 } from 'node-uuid';
+import { addError, errorTypes } from '../actions/error';
+
 
 export const addItem = (value) => ({
     type: 'ADD_ITEM',
@@ -13,7 +15,7 @@ export const addItemWithAPICall = (value) => (
     dispatch => (
         addItemAsync().then(
             html => dispatch(addItem(value)),
-            error => console.log(error)
+            error => dispatch(addError(errorTypes.NO_CONNECTION))
         )
     )
 );
