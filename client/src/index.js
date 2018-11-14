@@ -3,20 +3,25 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { configureStore } from './configureStore';
 import { Root } from './components/Root';
-import { addItem } from './actions/items';
 import { Provider } from 'react-redux';
-// import { addError, errorTypes } from './actions/error';
-
+import axios from 'axios';
 
 const store = configureStore();
 
 
-// test
-store.dispatch(addItem('Is this visible?'));
-store.dispatch(addItem('Hello, world!'))
-// store.dispatch(addError(errorTypes.NO_CONNECTION));
 
-console.log(store.getState());
+fetch('http://localhost:5000/item', {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    data: {
+      value: 'Fred',
+      id: 'Flintstone'
+    }
+});
+
 
 ReactDOM.render(
     <Provider store={ store }>
