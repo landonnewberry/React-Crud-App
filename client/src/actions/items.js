@@ -1,6 +1,5 @@
 import { v4 } from 'node-uuid';
-import { addError, errorTypes } from '../actions/error';
-
+import { fetchItems } from '../api';
 
 export const addItem = (value) => ({
     type: 'ADD_ITEM',
@@ -9,13 +8,12 @@ export const addItem = (value) => ({
 });
 
 // where async logic for certain actions are specified
-const addItemAsync = () => fetch('http://localhost:5000', { mode: 'no-cors' });
+// const addItemAsync = () => fetch('http://localhost:5000/item', { mode: 'no-cors' });
 
 export const addItemWithAPICall = (value) => (
     dispatch => (
-        addItemAsync().then(
-            html => dispatch(addItem(value)),
-            error => dispatch(addError(errorTypes.NO_CONNECTION))
+        fetchItems().then(items =>
+            console.log(items)
         )
     )
 );

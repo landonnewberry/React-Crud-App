@@ -40,7 +40,7 @@ def handle_invalid_usage(error):
 @app.route('/item', methods=['POST', 'GET'])
 def item():
     if request.method == 'POST':
-        print(request.form['value'])
+        print(request.form)
         if 'value' not in request.form or 'id' not in request.form:
             raise InvalidUsage('Must include "value" and "id" fields')
         else:
